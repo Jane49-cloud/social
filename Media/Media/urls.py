@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from Restaurants.views import home
+from Restaurants.views import home, restaurantView, chickenView, chipsView
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^$', home),
-
+    re_path(r'^restaurants/$', restaurantView.as_view()),
+    re_path(r'^restaurants/chicken/$', chickenView.as_view()),
+    re_path(r'^restaurants/chips/$', chipsView.as_view())
     ]
 
