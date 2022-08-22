@@ -2,6 +2,19 @@
 
 {% block content %}
 
+<h2>The following is ordered by category</h2>
+<div class="container">
+   
+            {% for restaurant in restaurant_list %}
+    
+            <Ul>
+                <li>  {{restaurant.name}} {{restaurant.location}}  {{restaurant.category}} {{restaurant.created_at}} {{restaurant.updated_at}}</li>
+        
+            </Ul>
+           
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock content %}
 

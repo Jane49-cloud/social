@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django. db. models import Q
 from django.http import HttpResponse
 from .models import Restaurant
 from django.views.generic import ListView, TemplateView
@@ -7,22 +8,35 @@ from django.views.generic import ListView, TemplateView
 def home(request):
     restaurants = Restaurant.objects.all()
     return render(request, "home.html", {'restaurants': restaurants})
+    print(restaurants)
 
 
 class restaurantView(ListView):
-    queryset = Restaurant.objects.all()
     template_name = 'restaurants.html'
+    context_object_name = 'restaurant_list'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(restaurantView, self).get_context_data(*args, **kwargs)
-        return context
+    def queryset(self):
+        slug = self.kwargs.get('slug')
+        if slug:
+            queryset = Restaurant.objects.filter(
+                Q(category__iexact=slug) |
+                Q(category__icontains=slug)
+            )
+        else:
+            queryset =Restaurant.objects.all()
+        return queryset
 
 
 class chickenView(ListView):
-    queryset = Restaurant.objects.filter(category__iexact='chicken')
     template_name = 'restaurants.html'
+    context_object_name = 'restaurant_list'
+    queryset = Restaurant.objects.filter(category__iexact='chicken')
+    
+      
 
 
 class chipsView(ListView):
-    queryset = Restaurant.objects.filter(category__iexact='chips')
     template_name = 'restaurants.html'
+    context_object_name = 'restaurant_list'
+    queryset = Restaurant.objects.filter(category__iexact='chips')
+    
