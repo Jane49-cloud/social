@@ -1,0 +1,56 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+    <br>
+    <br>
+    <style>
+        body{
+            background-color: #f5f5f5;
+        }
+        form{
+            background-color:rgb(0, 120, 80);
+            box-shadow: 2px, 2px #ffffff;
+            width: 400px;
+            margin: auto;
+            height: 500px;
+            border-radius:0.85rem;
+        }
+        .create-form{
+           width: 300px;
+           margin: auto;
+        }
+        input{
+            margin-left: 20px;
+            width:200px;
+            max-width: 420px;
+        outline: none;
+        border: none;
+        border-radius: 0.5rem;
+        }
+        label{
+            width: 100%;
+            margin: 20px;
+        }
+        button{
+        margin-left:10%;
+        width: 100px;
+        margin-top: 10px;
+       
+        }
+      
+    </style>
+    
+    
+    
+    
+    <form method="POST">  {%csrf_token%}
+       <div class="create-form">
+        
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary center">Save</button>
+       </div>
+ 
+    </form>
+
+{% endblock content %}

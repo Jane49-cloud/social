@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<h2>The following is ordered by category</h2>
+<div class="container">
+   
+            {% for restaurant in restaurant %}
+    
+            <Ul>
+                <li>name: {{restaurant.name}}  <br>
+                   location: {{restaurant.location}} <br>
+                    category:{{restaurant.category}} <br>
+                      created_at:{{restaurant.created_at}} <br>
+                       updated_at:{{restaurant.updated_at}}</li>
+        
+            </Ul>
+           
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %}
+
