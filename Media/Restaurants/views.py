@@ -1,4 +1,4 @@
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django. db. models import Q
 from django.http import HttpResponse
@@ -11,11 +11,16 @@ from .forms import ModelForm
 #     context ={}
 #     if request =='POST':
 
-class CreateFormView(CreateView):
+class CreateFormView(LoginRequiredMixin, CreateView):
     form_class = ModelForm
+    login= '/login/'
     template_name = 'createForm.html'
     success_url ='/'
         
+    def form_valid(self,form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(CreateFormView, self).form_valid(form)
 
 
 
