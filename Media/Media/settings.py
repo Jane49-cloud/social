@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'Restaurants'
 ]
 
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'# for develo[pment only]   
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
