@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django. db. models import Q
@@ -21,7 +22,12 @@ class CreateFormView(LoginRequiredMixin, CreateView):
         instance = form.save(commit=False)
         instance.owner = self.request.user
         return super(CreateFormView, self).form_valid(form)
-
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super(CreateFormView,self).get_context_data(*args, **kwargs)
+        context['title'] ='Add Restaurant'
+        return context
+      
 
 
 

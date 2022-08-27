@@ -1,11 +1,33 @@
 {% extends 'base.html'%}
 
 {% block content %}
+
 <div class="container">
+    <h2>Menu Items</h2>
     {% for list in item_list %}
     <Ul>
-        <li>  {{list.name}} {{list.Restaurant}}  {{list.content}} {{list.context}} </li>
+        <li>  {{list.name}} 
 
+   
+    {%if list.contents %}
+    contents
+    <ul>
+       
+       <li> {{list.contents}}</li>
+    </ul>
+    {% endif %}
+
+    {%if list.excludes %}
+
+    Excludes
+    <ul>
+        {for item in list}
+    <li>{{list.excludes}}</li>
+      
+        {%endif %}
+     
+    </ul>
+        </li>
     </Ul>
     {% endfor %}
 </div>

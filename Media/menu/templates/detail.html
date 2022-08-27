@@ -1,0 +1,15 @@
+{% extends 'base.html'%} {% block content %}
+
+<div class="container">
+  <h2>single Menu Item</h2>
+  {%for item in item %}
+  <h1>{{item.restaurant.name}}</h1>
+   {{ item.name}} <br />
+
+
+  <h3>contents</h3>
+  {{item.contents}}
+
+  <h3>Excludes</h3>
+  {{item.excludes}} {% endfor%} {% endblock content %}
+</div>

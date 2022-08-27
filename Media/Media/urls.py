@@ -47,5 +47,6 @@ urlpatterns = [
 # menu urls
     re_path(r'^menu/$', ItemCreateView.as_view(), name='create'),
     re_path(r'^menu/list/$', ItemListView.as_view(), name='list'),
-     re_path(r'^menu/(?P<pk>d+)/$', ItemListView.as_view()),   
+     re_path(r'^menu/(?P<pk>\d+)/$', ItemDetailsView, name ='details') , 
+      re_path(r'^menu/update/$', ItemUpdateView.as_view(), name='list'), 
 ]
