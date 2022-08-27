@@ -21,6 +21,6 @@ class Item(models.Model):
     
     def get_excludes(self):
         return self.excludes.splits(',')
-       
+    def __str__(self):
+        return self.name
         
-       
