@@ -18,12 +18,13 @@ from django.urls import path, re_path,reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView,PasswordResetView,PasswordResetCompleteView,PasswordResetConfirmView
 from django.contrib.auth import views as auth_views
 from Restaurants.views import home, restaurantView, single_restaurant, CreateFormView
+from menu.views import ItemListView, ItemDetailsView, ItemCreateView,ItemUpdateView
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^$',  home, name='home'),
     re_path(r'^login/$', LoginView.as_view(), name='login'),
-    re_path(r'^login/$', LogoutView.as_view(), name='logout'),
+    re_path(r'^logout/$', LogoutView.as_view(), name='logout'),
     re_path(r'^password_reset/$', PasswordResetView.as_view(),
             name='password_reset'),
     re_path(r'^password_reset/done/$', auth_views.PasswordResetDoneView.as_view(),
@@ -41,6 +42,10 @@ urlpatterns = [
         template_name='accounts/password_reset_confirm.html',
         success_url=reverse_lazy('accounts:password_reset_complete')
     ), name='password_reset_confirm'),
-    # re_path(r'^restaurants/chicken/$', chickenView.as_view()),
-    # re_path(r'^restaurants/chips/$', chipsView.as_view())
+    
+    
+# menu urls
+    re_path(r'^menu/$', ItemCreateView.as_view(), name='create'),
+    re_path(r'^menu/list/$', ItemListView.as_view(), name='list'),
+     re_path(r'^menu/(?P<pk>d+)/$', ItemListView.as_view()),   
 ]

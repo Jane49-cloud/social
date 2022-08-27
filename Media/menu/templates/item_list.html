@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+    {% for list in item_list %}
+    <Ul>
+        <li>  {{list.name}} {{list.Restaurant}}  {{list.content}} {{list.context}} </li>
+
+    </Ul>
+    {% endfor %}
+</div>
+
+{% endblock content %}
+
+
+
+
+
