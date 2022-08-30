@@ -19,6 +19,7 @@ from django.contrib.auth.views import LoginView, LogoutView,PasswordResetView,Pa
 from django.contrib.auth import views as auth_views
 from Restaurants.views import home, restaurantView, single_restaurant, CreateFormView,RestaurantUpdateView,ListRestaurants
 from menu.views import ItemListView, ItemDetailsView, ItemCreateView,ItemUpdateView
+from profiles.views import ProfileDetails
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
@@ -52,5 +53,9 @@ urlpatterns = [
     re_path(r'^menu/list/$', ItemListView.as_view(), name='list'),
      re_path(r'^menu/list/(?P<pk>\d+)/$', ItemDetailsView, name ='details') , 
       re_path(r'^menu/list/(?P<pk>\d+)/update/$', ItemUpdateView.as_view(), name ='update') , 
+      
+      
+      #profile urls
     
+     re_path(r'^profile/(?P<username>[\w-]+)/$',ProfileDetails.as_view(), name='detail'),
 ]

@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+
+
+{% block content%}
+<h1>{{user.username}}</h1>
+<hr>
+
+{{ user.restaurant_set.all }}
+{%for restaurant in user.restaurant_set.all %}
+
+<p>{{restaurant.name}}  // {{restaurant.location}}</p> 
+
+
+{% endfor %}
+<br>
+{{ user.item_set.all }}
+
+{% endblock %}
