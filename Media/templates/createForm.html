@@ -13,8 +13,9 @@
             box-shadow: 2px, 2px #ffffff;
             width: 400px;
             margin: auto;
-            height: 500px;
+            height: auto;
             border-radius:0.85rem;
+            box-sizing: content-box;
         }
         .create-form{
            width: 300px;
@@ -44,7 +45,7 @@
     
     
     
-    <form method="POST">  {%csrf_token%}
+    <form method="POST"  enctype="multipart/form-data">  {%csrf_token%}
        <div class="create-form">
         
         {{form.as_p}}
@@ -54,3 +55,4 @@
     </form>
 
 {% endblock content %}
+

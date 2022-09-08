@@ -4,6 +4,7 @@
 <div class="container">
     {% for restaurant in restaurants %}
     <Ul>
+        <img src= {{restaurant.image.url}} height="200" width="200" alt="">
         <li>  {{restaurant.name}} {{restaurant.location}}  {{restaurant.category}} {{restaurant.created_at}} {{restaurant.updated_at}}  {{restaurant.owner}}</li>
 
     </Ul>

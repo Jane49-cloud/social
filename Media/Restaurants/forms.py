@@ -1,7 +1,7 @@
-
 from django import forms
 
 from .models import Restaurant
+
 
 # class CreateForm(forms.form):
 #     name = forms.CharField(max_length= 250)
@@ -12,8 +12,9 @@ from .models import Restaurant
 class ModelForm(forms.ModelForm):
     class Meta:
         model = Restaurant
-        fields =[
+        fields = [
             'name',
             'location',
-            'category'
+            'category',
+            'image'
         ]

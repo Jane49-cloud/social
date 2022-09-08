@@ -3,16 +3,41 @@
 
 {% block content%}
 <h1>{{user.username}}</h1>
+<div class="container">
+    <form action="." method="GET" class="form">
+        <input type="text" placeholder="Search..." name="q" value={{request.GET.q}}>
+        <button class="btn btn-default" type="submit">Search</button>
+        </form>
+</div>
 <hr>
-
-{{ user.restaurant_set.all }}
+{% if location %}
 {%for restaurant in user.restaurant_set.all %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="thumbnail">
+            <h4>
+                {{restaurant.name}}
+            </h4>
+            <p>{{restaurant.location}} | {{restaurant.category}}</p>
+            <p>
+                <ul>
+            {% for item in user.items_set.all%}
+            <li>
+                <b>{{item.name}}</b> <br>
+                {{item.contents}}
+            </li>
 
-<p>{{restaurant.name}}  // {{restaurant.location}}</p> 
-
+            {% endfor %}
+        </ul>
+            </p>
+        </div>
+    </div>
+</div>
 
 {% endfor %}
-<br>
-{{ user.item_set.all }}
+{% else %}
+<p>No items found</p>
+{% endif%}
+
 
 {% endblock %}
