@@ -1,5 +1,6 @@
 from profile import Profile
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views import View
 from django.views.generic import DetailView
 from django.contrib.auth import get_user_model
 from django.http import Http404
@@ -9,8 +10,15 @@ from menu.models import Item
 User = get_user_model()
 
 
+class ProfileFollowToggle(View):
+    def post(self, request, *args, **kwargs):
+        print(request.POST)
+        return redirect("u/janen/")
+
+
 class ProfileDetails(DetailView):
     template_name = 'profile.html'
+
     # queryset = User.objects.filter(is_active=True)
 
     def get_object(self):

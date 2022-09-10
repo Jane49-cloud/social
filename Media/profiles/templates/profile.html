@@ -3,6 +3,8 @@
 
 {% block content%}
 <h1>{{user.username}}</h1>
+{% include 'profiles/templates/follow.html'%}
+</form>
 <div class="container">
     <form action="." method="GET" class="form">
         <input type="text" placeholder="Search..." name="q" value={{request.GET.q}}>

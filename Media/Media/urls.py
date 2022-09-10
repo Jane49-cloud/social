@@ -8,7 +8,7 @@ from django.contrib.auth import views as auth_views
 from Restaurants.views import home, restaurantView, single_restaurant, CreateFormView, RestaurantUpdateView, \
     ListRestaurants
 from menu.views import ItemListView, ItemDetailsView, ItemCreateView, ItemUpdateView
-from profiles.views import ProfileDetails
+from profiles.views import ProfileDetails, ProfileFollowToggle
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
@@ -44,6 +44,7 @@ urlpatterns = [
     # profile urls
 
     re_path(r'^profile/(?P<username>[\w-]+)/$', ProfileDetails.as_view(), name='detail'),
+    re_path(r'^follow/$', ProfileFollowToggle.as_view(), name='follow'),
 ]
 
 
