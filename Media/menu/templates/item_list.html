@@ -1,34 +1,50 @@
 {% extends 'base.html'%}
+{% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 
 {% block content %}
+<style>
+    .list_container{
+    background: whitesmoke;
+    width: 90vw;
+    display: flex;
+     flex-wrap: wrap;
+      justify-content: space-around;
+}
+</style>
 
-<div class="container">
-    <h2>Menu Items</h2>
-    {% for list in item_list %}
-    <Ul>
-        <li>  {{list.name}} 
+<div class="container list_container">
 
-   
-    {%if list.contents %}
-    contents
+     {% for list in item_list %}
+    <div class="card" style="width: 18rem; margin: 20px">
+  <img class="card-img-top" width="216" height="180" src={{list.image.url}}
+       alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"> {{list.name}} </h5>
+    <p class="card-text">  {%if list.contents %}
+    <h8>contents</h8>
     <ul>
-       
+
        <li> {{list.contents}}</li>
     </ul>
-    {% endif %}
+    {% endif %}</p>
+      <p class="card-text">
+             {%if list.excludes %}
 
-    {%if list.excludes %}
+   <h8>
+       Excludes
+  </h8>
+   <ul>
+       <li>{{list.excludes}}</li>
+  </ul>
+         {%endif %}
+      </p>
 
-    Excludes
-    <ul>
-        {for item in list}
-    <li>{{list.excludes}}</li>
-      
-        {%endif %}
-     
-    </ul>
-        </li>
-    </Ul>
+       <a href="#" class="btn btn-primary">Edit</a>
+  </div>
+</div>
+
     {% endfor %}
 </div>
 

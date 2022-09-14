@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<style>
+    .list_container {
+        background: whitesmoke;
+        width: 90vw;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+</style>
+
+
+<div class="container list_container">
+
+    {% for items in items %}
+    <div class="card" style="width: 18rem; margin: 20px;">
+        <img class="card-img-top" src={{items.image.url}} width="216" height="180" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title"> {{items.name}} </h5>
+            <p class="card-text"> {%if items.contents %}
+                contents
+            <ul>
+
+                <li> {{items.contents}}</li>
+            </ul>
+            {% endif %}</p>
+            <p class="card-text">
+                {%if items.excludes %}
+                Excludes
+            <li>{{items.excludes}}</li>
+
+            {%endif %}
+            </p>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock content %}
+
+
+
+
+

@@ -1,7 +1,7 @@
 from multiprocessing import context
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
-from django. db. models import Q
+from django.db.models import Q
 from django.http import HttpResponse
 from .models import Restaurant
 from django.views.generic import ListView, UpdateView, CreateView
@@ -29,15 +29,17 @@ def home(request):
     restaurants = Restaurant.objects.all()
     return render(request, "home.html", {'restaurants': restaurants})
 
+
 class ListRestaurants(ListView):
     template_name = 'restaurants.html'
     context_object_name = 'restaurant_list'
+
     def get_queryset(self):
         return Restaurant.objects.all(owner=self.request.user)
-    
+
 
 class restaurantView(LoginRequiredMixin, ListView):
-    template_name = 'restaurants.html'
+    template_name = 'restaurants.html '
     context_object_name = 'restaurant_list'
 
     def queryset(self):
@@ -67,10 +69,11 @@ class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
     login = '/login/'
     template_name = 'createForm.html'
     success_url = '/'
-    
+
     def get_form_data(self, *args, **kwargs):
         context = super(RestaurantUpdateView, self).get_form_data(*args, **kwargs)
-        context['title']= "update Restaurant"
+        context['title'] = "update Restaurant"
         return context
+
     def get_queryset(self):
         return Restaurant.objects.filter(owner=self.request.user)

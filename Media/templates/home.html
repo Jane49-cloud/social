@@ -1,16 +1,105 @@
 {% extends 'base.html'%}
 
 {% block content %}
+<style>
+    .card{
+        margin-top: 20px;
+    }
+    *{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+	font-family: arial;
+
+}
+body{
+	background: #f3f5f9;
+    position: sticky;
+    overflow-scrolling: touch;
+
+}
+.all-container{
+       display: flex;
+}
+.wrapper{
+	position: relative;
+}
+.sidebar{
+	/*position: fixed;*/
+	width: 150px;
+	height: 100%;
+	/*background: #000000e0;*/
+	padding: 20px 0;
+
+
+}
+.text-muted{
+	color: #adb5bd!important;
+}
+ul{
+	padding-bottom: 20px;
+}
+ .sidebar ul li{
+	padding: 15px;
+}
+.sidebar ul li a{
+	color: #fff;
+	display: block;
+}
+
+.sidebar ul li:hover{
+	background: #001;
+}
+.sidebar ul li a:hover{
+	text-decoration: none;
+}
+</style>
+
+<div class="all-container ">
+    <div class="wrapper d-flex ">
+	<div class="sidebar btn-secondary">
+		<ul>
+            	<li><a href="{% url 'list' %}"><i class="fas fa-home"></i>All Dishes</a>
+                    <hr>
+			<li><a href="#"><i class="fas fa-home"></i>CATEGORIES</a></li>
+              {% for restaurant in restaurants %}
+<!--            <ul>-->
+<!--               -->
+<!--                {{restaurant.category}}-->
+<!--            </ul>-->
+
+           {% endfor %}
+		</ul>
+	</div>
+</div>
+
+
 <div class="container">
     {% for restaurant in restaurants %}
-    <Ul>
-        <img src= {{restaurant.image.url}} height="200" width="200" alt="">
-        <li>  {{restaurant.name}} {{restaurant.location}}  {{restaurant.category}} {{restaurant.created_at}} {{restaurant.updated_at}}  {{restaurant.owner}}</li>
 
-    </Ul>
+ <div class="card w-75" style="margin-left: 50px;">
+  <div class="card-body">
+    <h5 class="card-title">{{restaurant.name}}</h5>
+        <img  src ={{restaurant.image.url}} height="200" width="200" alt="Card image cap">
+      <br>
+      <div class="card w-50">
+  <div class="card-body">
+    <h5 class="card-title">Posted by: <a href="#">{{restaurant.owner}}</a></h5>
+    <p class="card-text">location: {{restaurant.location}}</p>
+         <p class="card-text"> {{restaurant.category}}
+             <br>
+             {{restaurant.created_at}}</p>
+  </div>
+</div>
+
+  </div>
+</div>
     {% endfor %}
 </div>
 
+</div>
 {% endblock content %}
 
 

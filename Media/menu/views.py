@@ -15,6 +15,11 @@ class ItemListView(ListView):
         return Item.objects.filter(user=self.request.user)
 
 
+def allItems(request):
+    items = Item.objects.all()
+    return render(request, 'list.html', {"items":items})
+
+
 def ItemDetailsView(request, pk):
     template_name = 'detail.html'
     id = Item.objects.get(pk=pk)

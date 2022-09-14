@@ -17,12 +17,8 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
-    # class Meta:
-    #     ordering = ['-updated', '-timestamp']
     def get_contents(self):
         return self.contents.splits(',')
 
     def get_excludes(self):
         return self.excludes.splits(',')
-
-
